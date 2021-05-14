@@ -1,0 +1,335 @@
+terraform init
+
+Initializing the backend...
+
+Initializing provider plugins...
+- Finding hashicorp/aws versions matching "2.0.0"...
+╷
+│ Warning: Version constraints inside provider configuration blocks are depreca
+│
+│   on test.tf line 2, in provider "aws":
+│    2:     version = "2.0"
+│
+│ Terraform 0.13 and earlier allowed provider version constraints inside the pr
+│ future version of Terraform. To silence this warning, move the provider versi
+╵
+
+╷
+│
+│ Provider "hashicorp/aws" v2.0.0 is not compatible with Terraform 0.15.3.
+│ Provider version 3.40.0 is the latest compatible version. Select it with the 
+│       version = "3.40.0"
+│
+│ Terraform checked all of the plugin versions matching the given constraint:
+│       2.0.0
+│
+│ Consult the documentation for this provider for more information on compatibi
+│
+╵
+
+PS D:\Projects\terraform> terraform init
+
+Initializing the backend...
+
+Initializing provider plugins...
+- Finding hashicorp/aws versions matching "~> 2.0"...
+- Installing hashicorp/aws v2.70.0...
+- Installed hashicorp/aws v2.70.0 (signed by HashiCorp)
+
+Terraform has created a lock file .terraform.lock.hcl to record the provider
+selections it made above. Include this file in your version control repository
+so that Terraform can guarantee to make the same selections by default when
+you run "terraform init" in the future.
+
+╷
+│ Warning: Version constraints inside provider configuration blocks are depreca
+│
+│   on test.tf line 2, in provider "aws":
+│    2:     version = "~> 2.0"
+│
+│ future version of Terraform. To silence this warning, move the provider versi
+╵
+
+Terraform has been successfully initialized!
+
+You may now begin working with Terraform. Try running "terraform plan" to see
+any changes that are required for your infrastructure. All Terraform commands
+should now work.
+
+If you ever set or change modules or backend configuration for Terraform,
+rerun this command to reinitialize your working directory. If you forget, other
+commands will detect it and remind you to do so if necessary.
+PS D:\Projects\terraform> terraform plan
+
+Terraform used the selected providers to generate the following execution plan.
+  + create
+
+Terraform will perform the following actions:
+
+  # aws_s3_bucket.b will be created
+  + resource "aws_s3_bucket" "b" {
+      + acceleration_status         = (known after apply)
+      + acl                         = "private"
+      + arn                         = (known after apply)
+      + bucket                      = "test1-bucket"
+      + bucket_domain_name          = (known after apply)
+      + bucket_regional_domain_name = (known after apply)
+      + force_destroy               = false
+      + hosted_zone_id              = (known after apply)
+      + id                          = (known after apply)
+      + region                      = (known after apply)
+      + request_payer               = (known after apply)
+      + website_domain              = (known after apply)
+      + website_endpoint            = (known after apply)
+
+      + versioning {
+          + enabled    = true
+          + mfa_delete = false
+        }
+    }
+
+Plan: 1 to add, 0 to change, 0 to destroy.
+│ Warning: Version constraints inside provider configuration blocks are depreca
+│
+│   on test.tf line 2, in provider "aws":
+│    2:     version = "~> 2.0"
+│
+│ Terraform 0.13 and earlier allowed provider version constraints inside the pr
+│ future version of Terraform. To silence this warning, move the provider versi
+╵
+
+───────────────────────────────────────────────────────────────────────────────
+
+Note: You didn't use the -out option to save this plan, so Terraform can't guar
+PS D:\Projects\terraform> terraform apply
+
+Terraform used the selected providers to generate the following execution plan.
+  + create
+
+Terraform will perform the following actions:
+
+  # aws_s3_bucket.b will be created
+  + resource "aws_s3_bucket" "b" {
+      + acceleration_status         = (known after apply)
+      + acl                         = "private"
+      + arn                         = (known after apply)
+      + bucket                      = "test1-bucket"
+      + bucket_domain_name          = (known after apply)
+      + bucket_regional_domain_name = (known after apply)
+      + force_destroy               = false
+      + hosted_zone_id              = (known after apply)
+      + id                          = (known after apply)
+      + region                      = (known after apply)
+      + request_payer               = (known after apply)
+      + website_domain              = (known after apply)
+      + website_endpoint            = (known after apply)
+
+      + versioning {
+          + enabled    = true
+          + mfa_delete = false
+        }
+    }
+
+Plan: 1 to add, 0 to change, 0 to destroy.
+╷
+│ Warning: Version constraints inside provider configuration blocks are depreca
+│
+│   on test.tf line 2, in provider "aws":
+│    2:     version = "~> 2.0"
+│
+│ Terraform 0.13 and earlier allowed provider version constraints inside the pr
+│ future version of Terraform. To silence this warning, move the provider versi
+╵
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+  Enter a value: yes
+
+aws_s3_bucket.b: Creating...
+╷
+│ Error: Error creating S3 bucket: AuthorizationHeaderMalformed: The authorizat
+│       status code: 400, request id: 940GD2D6ECVB452A, host id: 5kQB3fY+z5exuZ
+│
+│   with aws_s3_bucket.b,
+│   on test.tf line 7, in resource "aws_s3_bucket" "b":
+│    7:   resource "aws_s3_bucket" "b" {
+│
+╵
+PS D:\Projects\terraform> terraform apply
+
+Terraform used the selected providers to generate the following execution plan.
+  + create
+
+Terraform will perform the following actions:
+
+  # aws_s3_bucket.b will be created
+  + resource "aws_s3_bucket" "b" {
+      + acceleration_status         = (known after apply)
+      + acl                         = "private"
+      + arn                         = (known after apply)
+      + bucket                      = "test1-bucket"
+      + bucket_domain_name          = (known after apply)
+      + bucket_regional_domain_name = (known after apply)
+      + force_destroy               = false
+      + hosted_zone_id              = (known after apply)
+      + id                          = (known after apply)
+      + region                      = (known after apply)
+      + request_payer               = (known after apply)
+      + website_domain              = (known after apply)
+      + website_endpoint            = (known after apply)
+
+      + versioning {
+          + enabled    = true
+          + mfa_delete = false
+        }
+    }
+
+Plan: 1 to add, 0 to change, 0 to destroy.
+╷
+│ Warning: Version constraints inside provider configuration blocks are depreca
+│
+│   on test.tf line 2, in provider "aws":
+│    2:     version = "~> 2.0"
+│
+│ Terraform 0.13 and earlier allowed provider version constraints inside the pr
+│ future version of Terraform. To silence this warning, move the provider versi
+╵
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+
+aws_s3_bucket.b: Creating...
+╷
+│ Error: Error creating S3 bucket: BucketAlreadyExists: The requested bucket naease select a different name and try again.
+│       status code: 409, request id: 5BXD4SMW6XGJGJYF, host id: O3CLGRBb6wvtbg
+│
+│   with aws_s3_bucket.b,
+│   on test.tf line 7, in resource "aws_s3_bucket" "b":
+│    7:   resource "aws_s3_bucket" "b" {
+│
+╵
+PS D:\Projects\terraform> terraform apply
+
+Terraform used the selected providers to generate the following execution plan.
+  + create
+
+Terraform will perform the following actions:
+
+  # aws_s3_bucket.b will be created
+  + resource "aws_s3_bucket" "b" {
+      + acceleration_status         = (known after apply)
+      + acl                         = "private"
+      + arn                         = (known after apply)
+      + bucket                      = "johny1-bucket-teest1"
+      + bucket_domain_name          = (known after apply)
+      + bucket_regional_domain_name = (known after apply)
+      + force_destroy               = false
+      + hosted_zone_id              = (known after apply)
+      + id                          = (known after apply)
+      + region                      = (known after apply)
+      + request_payer               = (known after apply)
+      + website_domain              = (known after apply)
+      + website_endpoint            = (known after apply)
+
+      + versioning {
+          + enabled    = true
+          + mfa_delete = false
+        }
+    }
+
+Plan: 1 to add, 0 to change, 0 to destroy.
+╷
+│ Warning: Version constraints inside provider configuration blocks are depreca
+│
+│   on test.tf line 2, in provider "aws":
+│    2:     version = "~> 2.0"
+│
+│ Terraform 0.13 and earlier allowed provider version constraints inside the pr
+│ future version of Terraform. To silence this warning, move the provider versi
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+aws_s3_bucket.b: Creating...
+aws_s3_bucket.b: Still creating... [10s elapsed]
+aws_s3_bucket.b: Creation complete after 19s [id=johny1-bucket-teest1]
+
+Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
+PS D:\Projects\terraform> terraform show
+# aws_s3_bucket.b:
+resource "aws_s3_bucket" "b" {
+    acl                         = "private"
+    arn                         = "arn:aws:s3:::johny1-bucket-teest1"
+    bucket                      = "johny1-bucket-teest1"
+    bucket_regional_domain_name = "johny1-bucket-teest1.s3.us-east-2.amazonaws.
+    force_destroy               = false
+    hosted_zone_id              = "Z2O1EMRO9K5GLX"
+    id                          = "johny1-bucket-teest1"
+    region                      = "us-east-2"
+
+    versioning {
+        enabled    = true
+        mfa_delete = false
+    }
+}
+PS D:\Projects\terraform> terraform destory
+Terraform has no command named "destory". Did you mean "destroy"?
+
+To see all of Terraform's top-level commands, run:
+  terraform -help
+
+PS D:\Projects\terraform> terraform destroy
+aws_s3_bucket.b: Refreshing state... [id=johny1-bucket-teest1]
+
+Terraform used the selected providers to generate the following execution plan.
+  - destroy
+
+Terraform will perform the following actions:
+
+  # aws_s3_bucket.b will be destroyed
+  - resource "aws_s3_bucket" "b" {
+      - acl                         = "private" -> null
+      - arn                         = "arn:aws:s3:::johny1-bucket-teest1" -> nu
+      - bucket                      = "johny1-bucket-teest1" -> null
+      - bucket_domain_name          = "johny1-bucket-teest1.s3.amazonaws.com" -
+      - bucket_regional_domain_name = "johny1-bucket-teest1.s3.us-east-2.amazon
+      - force_destroy               = false -> null
+      - hosted_zone_id              = "Z2O1EMRO9K5GLX" -> null
+      - id                          = "johny1-bucket-teest1" -> null
+      - region                      = "us-east-2" -> null
+      - request_payer               = "BucketOwner" -> null
+      - tags                        = {} -> null
+
+      - versioning {
+          - enabled    = true -> null
+          - mfa_delete = false -> null
+        }
+    }
+
+Plan: 0 to add, 0 to change, 1 to destroy.
+╷
+│ Warning: Version constraints inside provider configuration blocks are depreca
+│
+│   on test.tf line 2, in provider "aws":
+│    2:     version = "~> 2.0"
+│
+│ Terraform 0.13 and earlier allowed provider version constraints inside the pr
+│ future version of Terraform. To silence this warning, move the provider versiDo you really want to destroy all resources?
+  Terraform will destroy all your managed infrastructure, as shown above.
+  There is no undo. Only 'yes' will be accepted to confirm.
+
+  Enter a value: yes
+
+aws_s3_bucket.b: Destroying... [id=johny1-bucket-teest1]
+aws_s3_bucket.b: Destruction complete after 1s
+
+Destroy complete! Resources: 1 destroyed.
+PS D:\Projects\terraform>
+
+
